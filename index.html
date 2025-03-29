@@ -2,6 +2,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta property="og:image" content="https://i.imgur.com/Zm6SLcT.jpg" /> -->
+    <meta property="og:url" content="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3483.2724019408984!2d76.7425089597102!3d29.186106099999982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m3!3m2!1d28.656781!2d77.160974!4m5!1s0x390deb4fa6f128e9%3A0x7035bbe2f2ffba64!2sMain%2C%20Gohana%20-%20Panipat%20Rd%2C%20Gohana%2C%20Haryana%20131301!3m2!1d29.186398299999997!2d76.7446686!5e0!3m2!1sen!2sin!4v1743250094344!5m2!1sen!2sin" />
     <style>
         .map-container {
             width: 100%;
@@ -64,29 +66,6 @@
             font-size: 14px;
         }
         
-        /* Static Pointer (no animation) */
-        .static-pointer {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -100%);
-            width: 24px;
-            height: 24px;
-            background: #EA4335;
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            z-index: 10;
-        }
-        .static-pointer:after {
-            content: '';
-            width: 12px;
-            height: 12px;
-            margin: 6px 0 0 6px;
-            background: white;
-            position: absolute;
-            border-radius: 50%;
-        }
-        
         /* Location Card Pointer */
         .location-pointer {
             position: absolute;
@@ -110,24 +89,14 @@
                 padding: 10px 5px;
                 font-size: 14px;
             }
-            .static-pointer {
-                width: 20px;
-                height: 20px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="map-container">
-        <!-- Google Maps Embed with Static Pointer -->
+        <!-- Google Maps Embed with Native Pointer -->
         <div style="position: relative;">
-            <iframe
-                class="map-iframe"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.71234567890!2d77.1609740!3d28.6567810!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b2945a5a5a5%3A0x1234567890abcdef!2sDoon%20Public%20School%2C%20Main%2C%20Gohana%20-%20Panipat%20Rd%2C%20Gohana%2C%20Haryana%20131301!5e0!3m2!1sen!2sus!4v1625093768475&zoom=17"
-                allowfullscreen=""
-                loading="lazy">
-            </iframe>
-            <div class="static-pointer"></div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d3483.2724019408984!2d76.7425089597102!3d29.186106099999982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m3!3m2!1d28.656781!2d77.160974!4m5!1s0x390deb4fa6f128e9%3A0x7035bbe2f2ffba64!2sMain%2C%20Gohana%20-%20Panipat%20Rd%2C%20Gohana%2C%20Haryana%20131301!3m2!1d29.186398299999997!2d76.7446686!5e0!3m2!1sen!2sin!4v1743250094344!5m2!1sen!2sin" class="map-iframe" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         
         <!-- Directions Buttons -->
