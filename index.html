@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .map-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: 'Roboto', Arial, sans-serif;
+            position: relative;
+        }
+        .map-iframe {
+            width: 100%;
+            height: 65vh;
+            min-height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .directions-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .direction-btn {
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .direction-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .direction-icon {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .location-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 15px;
+            border: 1px solid #e0e0e0;
+            position: relative;
+            overflow: hidden;
+        }
+        .location-title {
+            margin-top: 0;
+            color: #202124;
+            font-size: 18px;
+            position: relative;
+        }
+        .location-detail {
+            margin-bottom: 8px;
+            color: #5f6368;
+            font-size: 14px;
+        }
+        
+        /* Blinking Pointer Animation */
+        .blinking-pointer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            width: 24px;
+            height: 24px;
+            background: #EA4335;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            animation: pulse 1.5s infinite;
+            z-index: 10;
+        }
+        .blinking-pointer:after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            margin: 6px 0 0 6px;
+            background: white;
+            position: absolute;
+            border-radius: 50%;
+        }
+        @keyframes pulse {
+            0% { transform: rotate(-45deg) scale(1); opacity: 1; }
+            50% { transform: rotate(-45deg) scale(1.3); opacity: 0.7; }
+            100% { transform: rotate(-45deg) scale(1); opacity: 1; }
+        }
+        
+        /* Location Card Pointer */
+        .location-pointer {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background: #f8f9fa;
+            transform: rotate(45deg);
+            border-left: 1px solid #e0e0e0;
+            border-top: 1px solid #e0e0e0;
+            z-index: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .map-iframe {
+                height: 55vh;
+                min-height: 350px;
+            }
+            .direction-btn {
+                padding: 10px 5px;
+                font-size: 14px;
+            }
+            .blinking-pointer {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="map-container">
+        <!-- Google Maps Embed with Blinking Pointer -->
+        <div style="position: relative;">
+            <iframe
+                class="map-iframe"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.71234567890!2d77.1609740!3d28.6567810!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b2945a5a5a5%3A0x1234567890abcdef!2sDoon%20Public%20School%2C%20Main%2C%20Gohana%20-%20Panipat%20Rd%2C%20Gohana%2C%20Haryana%20131301!5e0!3m2!1sen!2sus!4v1625093768475&zoom=17"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+            <div class="blinking-pointer"></div>
+        </div>
+        
+        <!-- Directions Buttons -->
+        <div class="directions-container">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Doon+Public+School,+Gohana+-+Panipat+Rd,+Gohana,+Haryana+131301"
+               target="_blank"
+               class="direction-btn"
+               style="background: #4285F4; color: white;">
+                <span class="direction-icon">🚗</span>
+                Drive
+            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Doon+Public+School,+Gohana+-+Panipat+Rd,+Gohana,+Haryana+131301&travelmode=transit"
+               target="_blank"
+               class="direction-btn"
+               style="background: #34A853; color: white;">
+                <span class="direction-icon">🚆</span>
+                Transit
+            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Doon+Public+School,+Gohana+-+Panipat+Rd,+Gohana,+Haryana+131301&travelmode=walking"
+               target="_blank"
+               class="direction-btn"
+               style="background: #EA4335; color: white;">
+                <span class="direction-icon">🚶</span>
+                Walk
+            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Doon+Public+School,+Gohana+-+Panipat+Rd,+Gohana,+Haryana+131301&travelmode=bicycling"
+               target="_blank"
+               class="direction-btn"
+               style="background: #FBBC05; color: white;">
+                <span class="direction-icon">🚴</span>
+                Bike
+            </a>
+        </div>
+        
+        <!-- Location Information with Pointer -->
+        <div class="location-card">
+            <div class="location-pointer"></div>
+            <h3 class="location-title">Doon Public School</h3>
+            <p class="location-detail">
+                <strong>Address:</strong><br>
+                Main, Gohana - Panipat Rd, Gohana, Haryana 131301
+            </p>
+            <p class="location-detail">
+                <strong>Coordinates:</strong><br>
+                28.6567810°N, 77.1609740°E
+            </p>
+        </div>
+    </div>
+</body>
+</html>
