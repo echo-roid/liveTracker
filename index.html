@@ -64,8 +64,8 @@
             font-size: 14px;
         }
         
-        /* Blinking Pointer Animation */
-        .blinking-pointer {
+        /* Static Pointer (no animation) */
+        .static-pointer {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -75,10 +75,9 @@
             background: #EA4335;
             border-radius: 50% 50% 50% 0;
             transform: rotate(-45deg);
-            animation: pulse 1.5s infinite;
             z-index: 10;
         }
-        .blinking-pointer:after {
+        .static-pointer:after {
             content: '';
             width: 12px;
             height: 12px;
@@ -86,11 +85,6 @@
             background: white;
             position: absolute;
             border-radius: 50%;
-        }
-        @keyframes pulse {
-            0% { transform: rotate(-45deg) scale(1); opacity: 1; }
-            50% { transform: rotate(-45deg) scale(1.3); opacity: 0.7; }
-            100% { transform: rotate(-45deg) scale(1); opacity: 1; }
         }
         
         /* Location Card Pointer */
@@ -116,7 +110,7 @@
                 padding: 10px 5px;
                 font-size: 14px;
             }
-            .blinking-pointer {
+            .static-pointer {
                 width: 20px;
                 height: 20px;
             }
@@ -125,7 +119,7 @@
 </head>
 <body>
     <div class="map-container">
-        <!-- Google Maps Embed with Blinking Pointer -->
+        <!-- Google Maps Embed with Static Pointer -->
         <div style="position: relative;">
             <iframe
                 class="map-iframe"
@@ -133,7 +127,7 @@
                 allowfullscreen=""
                 loading="lazy">
             </iframe>
-            <div class="blinking-pointer"></div>
+            <div class="static-pointer"></div>
         </div>
         
         <!-- Directions Buttons -->
